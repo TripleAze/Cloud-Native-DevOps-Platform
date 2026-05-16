@@ -25,6 +25,6 @@ output "acm_certificate_arn" {
 
 output "route53_zone_name" {
   description = "Route53 zone name"
-  value       = aws_route53_zone.primary.name
+  value       = data.aws_route53_zone.primary.name
 }
 

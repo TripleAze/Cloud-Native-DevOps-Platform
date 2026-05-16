@@ -75,7 +75,7 @@ module "load_balancer_controller_irsa_role" {
 }
 
 # Route53 Zone
-resource "aws_route53_zone" "primary" {
+data "aws_route53_zone" "primary" {
   name = var.domain_name
 }
 
@@ -84,22 +84,18 @@ module "acm" {
   source  = "terraform-aws-modules/acm/aws"
   version = "~> 5.0"
 
-  domain_name = aws_route53_zone.primary.name
-  zone_id     = aws_route53_zone.primary.zone_id
+  domain_name = data.aws_route53_zone.primary.name
+  zone_id     = data.aws_route53_zone.primary.zone_id
 
   # Validates the cert automatically via Route 53
   validation_method = "DNS"
 
   subject_alternative_names = [
-    "*.${aws_route53_zone.primary.name}",
+    "*.${data.aws_route53_zone.primary.name}",
   ]
 
   wait_for_validation = true
 }
-
-# Database runs in-cluster as a Kubernetes Deployment (chat-db)
-# No AWS RDS module needed
-
 
 module "ecr" {
   source   = "terraform-aws-modules/ecr/aws"
