@@ -51,6 +51,10 @@ module "eks" {
     node_pools = ["general-purpose"]
   }
 
+  storage_config = {
+    enabled = true
+  }
+
   tags = {
     environment = var.environment
     project     = var.project
@@ -73,6 +77,7 @@ module "load_balancer_controller_irsa_role" {
     }
   }
 }
+
 
 # Route53 Zone
 data "aws_route53_zone" "primary" {
