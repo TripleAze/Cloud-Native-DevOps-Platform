@@ -51,10 +51,6 @@ module "eks" {
     node_pools = ["general-purpose"]
   }
 
-  storage_config = {
-    enabled = true
-  }
-
   tags = {
     environment = var.environment
     project     = var.project
