@@ -8,7 +8,7 @@ This document explains the system architecture of the platform, including runtim
 
 ## Runtime Architecture
 
-The system follows a microservices-based architecture deployed on Amazon EKS.
+The system follows a microservices-based architecture deployed on Amazon EKS using EKS Auto Mode.
 
 ### Architecture Overview
 
@@ -16,37 +16,35 @@ The system follows a microservices-based architecture deployed on Amazon EKS.
 Users / Clients
         │
         ▼
-Load Balancer / Ingress (ALB)
-        │
-        ▼
-Kubernetes Cluster (EKS)
-  ├── Gateway Service ─────────────────────────────────┐
-  │     (routes to internal microservices)             │
-  ├── User Management Service ──────────────────────┐  │
-  ├── Course Management Service ────────────────────┼──► Database (RDS)
-  └── Enrollments Management Service ───────────────┘
-        │                                               │
-        ▼                                               ▼
-  ECR (Container Images)                       Secrets Manager
-        │
-        ▼
-Prometheus & Grafana
-  (Monitoring & Visualization)
+Route 53 DNS ──► Application Load Balancer / Ingress (ALB)
+                       │
+                       ▼
+            Kubernetes Cluster (EKS)
+              ├── chat-front (Frontend) ───────────────────────┐
+              │     (serves Web UI assets over HTTPS)          │
+              ├── chat-svc (Backend API & Sockets) ────────────┼──► Database (chat-db Pod)
+              │     (runs REST API & Socket.io WebSockets)     │      (natively backed by EBS PVC)
+                    │                                               │
+                    ▼                                               ▼
+              ECR (Container Images)                       ConfigMaps & Secrets
 ```
 
 ---
 
 ## Data Flow
 
-- User requests flow from:
-  Users → Load Balancer → API Gateway → Kubernetes Services
+- **Frontend Client (chat-front):**
+  Static assets are served via HTTPS. The client browser connects to the backend API host resolved through Route 53.
+  
+- **Backend API & WebSockets (chat-svc):**
+  Processes REST queries on `/api`, holds persistent Socket.io WebSockets on `/socket.io`, and connects to the database.
 
-- Services interact with:
-  - RDS for data storage  
-  - Secrets Manager for credentials  
-  - Prometheus for metrics  
+- **Storage Engine (chat-db & EBS SC):**
+  Uses EKS Auto Mode's native provisioner (`ebs.csi.eks.amazonaws.com`) to dynamically map GP3 volumes to pods.
 
-- Kubernetes pulls container images from ECR  
+- **Secrets and Configuration Management:**
+  Docker configurations and credentials are dynamically mapped via namespaced Kubernetes ConfigMaps and Secrets.
+
 
 ---
 
