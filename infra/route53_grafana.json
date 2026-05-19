@@ -1,0 +1,18 @@
+{
+  "Comment": "Creating CNAME record for Grafana ALB Ingress",
+  "Changes": [
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "grafana.atiqabubakar.sbs.",
+        "Type": "CNAME",
+        "TTL": 300,
+        "ResourceRecords": [
+          {
+            "Value": "k8s-observab-promethe-c904ea0f9b-215127810.us-east-1.elb.amazonaws.com"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "Comment": "Creating CNAME records for Staging and Production ALBs",
+  "Changes": [
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "staging.atiqabubakar.sbs.",
+        "Type": "CNAME",
+        "TTL": 300,
+        "ResourceRecords": [
+          {
+            "Value": "k8s-staging-chatingr-b1d92202da-4227731.us-east-1.elb.amazonaws.com"
+          }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "*.atiqabubakar.sbs.",
+        "Type": "CNAME",
+        "TTL": 300,
+        "ResourceRecords": [
+          {
+            "Value": "k8s-producti-chatingr-0c959ef091-43117646.us-east-1.elb.amazonaws.com"
+          }
+        ]
+      }
+    }
+  ]
+}

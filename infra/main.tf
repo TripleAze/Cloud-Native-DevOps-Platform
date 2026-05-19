@@ -58,7 +58,6 @@ module "eks" {
 }
 
 
-
 module "load_balancer_controller_irsa_role" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
   version = "~> 5.30"
@@ -73,7 +72,6 @@ module "load_balancer_controller_irsa_role" {
     }
   }
 }
-
 
 # Route53 Zone
 data "aws_route53_zone" "primary" {
