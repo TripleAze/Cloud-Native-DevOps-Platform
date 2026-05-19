@@ -129,3 +129,9 @@ Container Registry             Deployment Repository
 3. Pipeline builds, tests, scans, and pushes the Docker image to **ECR**
 4. Pipeline updates the image tag in the **Deployment Repository**
 5. **ArgoCD** detects the manifest change and syncs the new version to **EKS**
+
+---
+
+## System Verification & Visual Showcase
+
+To review the actual live verification screenshots demonstrating fully synchronized ArgoCD environments, ECR repositories, and Grafana observability logs, please see the [Workload Verification Guide](VERIFICATION.md).
