@@ -130,11 +130,11 @@ The log aggregation pipeline uses Promtail daemonsets to harvest stdout/stderr s
 
 ---
 
-## 🔔 6. Active Alerting & Incident Response (Alertmanager)
+## 6. Active Alerting & Incident Response (Alertmanager)
 
 Alerting ensures that operations teams are proactively notified of cluster anomalies. Prometheus continuously evaluates metric rules and routes active alerts directly to Alertmanager for deduplication, grouping, and notification routing.
 
-### 🚨 Alertmanager Incident Control Center
+### Alertmanager Incident Control Center
 * **File Path:** `docs/screenshots/Alertmanager Active Alerts.png`
 * **Validation:** Showcases the active Alertmanager UI (accessed via port-forwarding on port `9093`), listing active alert groupings (such as the system-wide `Watchdog` heartbeat and standard unreachable EKS-managed control plane metrics), proving the alerting pipeline is fully functional and ready to route incident notifications.
 * **Visual:**
