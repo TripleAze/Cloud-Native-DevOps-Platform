@@ -86,13 +86,4 @@ This objective directly supports subsequent project deliverables, including:
 - Microservices development and containerization  
 - CI/CD pipeline implementation  
 - GitOps deployment configuration  
-- Observability and monitoring setup  
-
-
-
-
-
-
-
-aws eks update-kubeconfig --region us-east-1 --name payday-cluster --profile kadri
-kubectl get ingress chat-ingress
+- Observability and monitoring setup

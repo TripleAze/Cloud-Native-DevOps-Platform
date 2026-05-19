@@ -1,18 +1,30 @@
 # Production-Grade Platform Verification Portfolio
 
-This verification portfolio serves as the definitive visual audit for the **TripleAze Production-Grade Cloud-Native DevOps Platform**. The real-world screenshots documented below validate the successful automation of our Continuous Integration (CI) pipelines, Continuous Delivery (GitOps) state syncs, high-availability cluster runtimes, and deep system observability (metrics, resource usage, and log aggregation).
+This verification portfolio serves as the definitive visual audit for the **TripleAze Production-Grade Cloud-Native DevOps Platform**. The real-world screenshots documented below validate the successful automation of our Continuous Integration (CI) pipelines, AWS container registries, Continuous Delivery (GitOps) state syncs, high-availability cluster runtimes, and deep system observability (metrics, resource usage, and log aggregation).
 
 ---
 
-## 1. Continuous Integration & Deployment (GitHub Actions)
+## 1. Continuous Integration, Quality Gate & Deployment (GitHub Actions, AWS ECR, & SonarCloud)
 
 Our CI/CD pipelines are fully automated using GitHub Actions. The pipeline handles linting, building, scanning, and pushing Docker container images to Amazon ECR, and prompts for manual approval before shipping changes to production.
+
+### AWS ECR Container Registries
+* **File Path:** `docs/screenshots/AWS ECR .png`
+* **Validation:** Proves that the container images for both the frontend (`chat-front`) and backend (`chat-svc`) are securely pushed, scanned, and stored in Amazon ECR via the GitHub Actions CI pipeline, ready to be consumed by EKS.
+* **Visual:**
+  ![AWS ECR Repositories](../screenshots/AWS%20ECR%20.png)
 
 ### Automated CI Pipeline Success
 * **File Path:** `docs/screenshots/CI Successfull run.png`
 * **Validation:** Confirms that the full build, scan, and test workflow finishes flawlessly, generating new container images for the microservices.
 * **Visual:**
   ![CI Pipeline Success](../screenshots/CI%20Successfull%20run.png)
+
+### SonarCloud Static Code Analysis (SAST)
+* **File Path:** `docs/screenshots/Sonar Cloud Branch Summary.png`
+* **Validation:** Showcases the automated SonarCloud analysis report, proving that the microservices codebase successfully passes the Quality Gate with 0 bugs, 0 vulnerabilities, 0 code duplications, and 0 security hotspots.
+* **Visual:**
+  ![SonarCloud Quality Gate Passed](../screenshots/Sonar%20Cloud%20Branch%20Summary.png)
 
 ### Production Push Approval Gate
 * **File Path:** `docs/screenshots/CI requesting Approval to Push to Production.png`
@@ -139,4 +151,3 @@ Alerting ensures that operations teams are proactively notified of cluster anoma
 * **Validation:** Showcases the active Alertmanager UI (accessed via port-forwarding on port `9093`), listing active alert groupings (such as the system-wide `Watchdog` heartbeat and standard unreachable EKS-managed control plane metrics), proving the alerting pipeline is fully functional and ready to route incident notifications.
 * **Visual:**
   ![Alertmanager Incident Control Center](../screenshots/Alertmanager%20Active%20Alerts.png)
-
