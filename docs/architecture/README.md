@@ -12,6 +12,10 @@ The system follows a microservices-based architecture deployed on Amazon EKS usi
 
 ### Architecture Overview
 
+![Runtime Architecture Diagram](runtime/architecture-runtime.png)
+
+### Logical Topology Overview
+
 ```
 Users / Clients
         │
@@ -62,6 +66,10 @@ Route 53 DNS ──► Application Load Balancer / Ingress (ALB)
 The platform uses a GitOps-based CI/CD pipeline to automate the build, security scanning, and deployment of containerized services.
 
 ### Pipeline Overview
+
+![Delivery Architecture Diagram](delivery/architecture-delivery.png)
+
+### Automated Delivery Workflow
 
 ```
 Developer / Dev Team
