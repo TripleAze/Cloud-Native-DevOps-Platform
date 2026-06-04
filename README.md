@@ -1,4 +1,4 @@
-# Production-Grade Cloud-Native DevOps Platform
+# Cloud-Native DevOps Platform
 
 Welcome to the **TripleAze Production-Grade Cloud-Native DevOps Platform**! This repository is a real-world, production-ready blueprint demonstrating how modern engineering teams design, deploy, and operate high-availability microservices-based distributed systems in the cloud.
 
